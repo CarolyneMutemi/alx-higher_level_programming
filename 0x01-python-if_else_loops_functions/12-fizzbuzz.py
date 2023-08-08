@@ -8,7 +8,7 @@ def fizzbuzz():
         mod3 = i % 3
         mod5 = i % 5
         if mod3 == 0 and mod5 == 0:
-            print("FizzBuzz,", end=" ")
+            print("FizzBuzz", end=" ")
         elif mod3 == 0:
             print("Fizz", end=" ")
         elif mod5 == 0:
