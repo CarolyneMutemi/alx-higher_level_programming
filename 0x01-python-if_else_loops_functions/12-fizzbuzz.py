@@ -14,4 +14,4 @@ def fizzbuzz():
         elif mod5 == 0:
             print("Buzz", end=" ")
         else:
-            print(i, end=" ")
+            print("{}".format(i), end=" ")
