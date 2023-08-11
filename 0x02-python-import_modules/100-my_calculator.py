@@ -17,5 +17,6 @@ if __name__ == "__main__":
         case "/":
             print(f"{a} / {b} = {div(a, b)}")
         case _:
-            sys.stderr.write("Unknown operator. Available operators: +, -, * and /\n")
+            sys.stderr.write("Unknown operator. Available operators: +, -, * \
+                    and /\n")
             exit(1)
