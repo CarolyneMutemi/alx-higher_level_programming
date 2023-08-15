@@ -28,6 +28,7 @@ int is_palindrome(listint_t **head)
 		len++;
 		array = realloc(array, sizeof(int) * len + 1);
 	}
+	array = realloc(array, sizeof(int) * len);
 
 	while (pointer != NULL)
 	{
