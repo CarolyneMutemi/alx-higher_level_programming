@@ -15,18 +15,24 @@ int is_palindrome(listint_t **head)
 	int mid = 0;
 	int beg = 0;
 	int end = 0;
-	int *array = malloc(sizeof(int));
 
 	if (*head == NULL)
 		return (1);
 
 	while (p != NULL)
 	{
+		p = p->next;
+		len++;
+	}
+
+	p = *head;
+	int array[len];
+
+	while (p != NULL)
+	{
 		array[index] = p->n;
 		index++;
 		p = p->next;
-		len++;
-		array = realloc(array, sizeof(int) * (len + 1));
 	}
 
 	end = len - 1;
@@ -42,6 +48,5 @@ int is_palindrome(listint_t **head)
 		beg++;
 		end--;
 	}
-	free(array);
 	return (1);
 }
