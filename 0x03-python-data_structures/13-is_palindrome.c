@@ -26,7 +26,7 @@ int is_palindrome(listint_t **head)
 		index++;
 		p = p->next;
 		len++;
-		array = realloc(array, sizeof(int) * len + 1);
+		array = realloc(array, sizeof(int) * (len + 1));
 	}
 
 	end = len - 1;
