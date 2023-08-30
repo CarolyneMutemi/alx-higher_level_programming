@@ -18,4 +18,6 @@ def list_division(l1, l2, len):
             print("wrong type")
             my_list.append(0)
             continue
+        finally:
+            continue
     return my_list
