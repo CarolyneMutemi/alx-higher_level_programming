@@ -18,12 +18,13 @@ def text_indentation(text):
 
     string = ""
     for k, i in enumerate(text):
-        if i == " " and (text[k - 1] == "." or text[k - 1] == "?" or text[k - 1] == ":"):
+        if i == " " and (text[k - 1] == "." or
+                         text[k - 1] == "?" or text[k - 1] == ":"):
             string.replace(i, "")
             continue
         string += i
         if i == "." or i == "?" or i == ":":
             string += "\n\n"
             continue
-        
+
     print(string, end="")
