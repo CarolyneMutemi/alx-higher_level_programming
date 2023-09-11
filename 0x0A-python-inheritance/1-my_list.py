@@ -13,9 +13,6 @@ class MyList(list):
         """
         Prints the list, but sorted (ascending sort)
         """
-        my = MyList()
-        for i in self:
-            my.append(i)
-
+        my = self.copy()
         my.sort()
         print(my)
