@@ -13,7 +13,7 @@ class MyInt(int):
         self.value = value
 
     def __eq__(self, other):
-        return  self.value != other
+        return self.value != other
 
     def __ne__(self, other):
         return self.value == other
