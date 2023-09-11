@@ -4,6 +4,7 @@
 Defines the MyList function.
 """
 
+
 class MyList(list):
     """
     MyList class - inherits from class.
