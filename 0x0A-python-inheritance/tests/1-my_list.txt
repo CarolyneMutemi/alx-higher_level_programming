@@ -23,3 +23,20 @@ Tests:
     >>> print(my_list)
     [1, 4, 2, 3, 5]
     >>> 
+    >>> str = MyList()
+    >>> str.append(1)
+    >>> str.append(2)
+    >>> str.append("Hello")
+    >>> str.append([1, 2, 3])
+    >>> 
+    >>> print(str)
+    [1, 2, 'Hello', [1, 2, 3]]
+    >>> try:
+    ...     str.print_sorted()
+    ... except Exception as e:
+    ...     print(e)
+    ... 
+    '<' not supported between instances of 'str' and 'int'
+    >>> 
+    >>> print(str)
+    [1, 2, 'Hello', [1, 2, 3]]
