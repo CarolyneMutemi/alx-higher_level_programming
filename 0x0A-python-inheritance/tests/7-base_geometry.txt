@@ -40,4 +40,12 @@ Tests:
     ... 
     [Exception] area() is not implemented
     >>> 
+    >>> try:
+    ...     bg.integer_validator("Value", True)
+    ... except Exception as e:
+    ...     print(e)
+    ... 
+    Value must be an integer
+    >>> 
+
 
