@@ -7,7 +7,7 @@ Defines the MyList function.
 
 class MyList(list):
     """
-    MyList class - inherits from class.
+    MyList class - inherits class list.
     """
     def print_sorted(self):
         """
