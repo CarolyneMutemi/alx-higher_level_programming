@@ -3,7 +3,6 @@
 """
 Has the read_file function.
 """
-import os
 
 
 def read_file(filename=""):
