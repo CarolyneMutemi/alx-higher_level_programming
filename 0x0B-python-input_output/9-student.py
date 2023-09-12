@@ -7,7 +7,7 @@ Has the class Student.
 
 class Student:
     """
-    Defines a student 
+    Defines a student
     """
 
     def __init__(self, first_name, last_name, age):
