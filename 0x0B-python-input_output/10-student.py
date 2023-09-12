@@ -23,7 +23,7 @@ class Student:
                 contained in this list must be retrieved.
         """
         dic = {}
-        if attrs:
+        if isinstance(attrs, list) and list:
             for i in attrs:
                 if i in self.__dict__:
                     dic[i] = self.__dict__[i]
