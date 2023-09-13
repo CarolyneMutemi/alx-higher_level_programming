@@ -40,3 +40,7 @@ Tests:
     >>> 
     >>> print(str)
     [1, 2, 'Hello', [1, 2, 3]]
+    >>> lis = MyList()
+    >>> lis.print_sorted()
+    []
+    >>> 
