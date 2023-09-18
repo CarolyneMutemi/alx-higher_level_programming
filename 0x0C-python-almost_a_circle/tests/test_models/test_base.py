@@ -47,7 +47,8 @@ class TestBase(unittest.TestCase):
         self.assertRaises(TypeError, Base.to_json_string, True)
         self.assertEqual(Base.to_json_string([1, 4, 5]), "[1, 4, 5]")
         self.assertEqual(Base.to_json_string({'Hello': 43}), '{"Hello": 43}')
-        self.assertEqual(Base.to_json_string((2, 4, 'hello')), '[2, 4, "hello"]')
+        self.assertEqual(Base.to_json_string((2, 4, 'hello')),
+                         '[2, 4, "hello"]')
         self.assertRaises(TypeError, Base.to_json_string, 23)
         self.assertEqual(Base.to_json_string('Hey'), '"Hey"')
         self.assertRaises(TypeError, Base.to_json_string, {23, 34})

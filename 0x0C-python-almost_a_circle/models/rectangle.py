@@ -4,8 +4,9 @@
 Has the class Rectangle.
 """
 import sys
-sys.path.append("/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models")
 from base import Base
+sys.path.append("/home/carolyne/alx-higher_level_programming\
+        /0x0C-python-almost_a_circle/models")
 
 
 class Rectangle(Base):
@@ -96,7 +97,9 @@ class Rectangle(Base):
             print("#" * self.__width)
 
     def __str__(self):
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+        return "[Rectangle] ({}) {}/{} - {}/{}"\
+                .format(self.id, self.__x, self.__y,
+                        self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """
@@ -142,9 +145,9 @@ class Rectangle(Base):
                 elif k == 'y':
                     self.__y = v
 
-
     def to_dictionary(self):
         """
         Returns the dictionary representation of a Rectangle instance.
         """
-        return {'id': self.id, 'width': self.__width, 'height': self.__height, 'x': self.__x, 'y': self.__y}
+        return {'id': self.id, 'width': self.__width,
+                'height': self.__height, 'x': self.__x, 'y': self.__y}

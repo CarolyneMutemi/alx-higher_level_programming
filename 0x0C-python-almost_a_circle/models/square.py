@@ -4,8 +4,9 @@
 Has the Square class.
 """
 import sys
-sys.path.append("/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models")
 from rectangle import Rectangle
+sys.path.append("/home/carolyne/alx-higher_level_programming\
+        /0x0C-python-almost_a_circle/models")
 
 
 class Square(Rectangle):
@@ -25,7 +26,7 @@ class Square(Rectangle):
 
     def __str__(self):
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
-    
+
     def update(self, *args, **kwargs):
         """
         Updates a Rectangle instance.
@@ -60,7 +61,6 @@ class Square(Rectangle):
                     self.x = v
                 elif k == 'y':
                     self.y = v
-
 
     def to_dictionary(self):
         """
