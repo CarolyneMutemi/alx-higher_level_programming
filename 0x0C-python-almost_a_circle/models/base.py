@@ -47,6 +47,7 @@ class Base:
                     dic.append(i.to_dictionary())
                 file.write(Base.to_json_string(dic))
 
+    @staticmethod
     def from_json_string(json_string):
         """
         Returns the list of the JSON string representation json_string.
@@ -66,9 +67,10 @@ class Base:
         """
         if cls.__name__ == 'Square':
             dummy = cls(1)
+            dummy.update(**dictionary)
         elif cls.__name__ == 'Rectangle':
             dummy = cls(1, 2)
-        dummy.update(**dictionary)
+            dummy.update(**dictionary)
         return dummy
 
     @classmethod

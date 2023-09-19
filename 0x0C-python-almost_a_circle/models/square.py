@@ -3,9 +3,7 @@
 """
 Has the Square class.
 """
-import sys
-sys.path.append("/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models")
-from rectangle import Rectangle
+Rectangle = __import__("models.rectangle").rectangle.Rectangle
 
 
 class Square(Rectangle):
