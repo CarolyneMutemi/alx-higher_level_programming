@@ -5,6 +5,8 @@ Has the Base class.
 """
 import json
 import os
+import csv
+from collections import OrderedDict
 
 
 class Base:
@@ -86,3 +88,38 @@ class Base:
             for i in lis:
                 lis1.append(cls.create(**i))
             return lis1
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Serializes in CSV.
+        """
+        with open(f"{cls.__name__}.csv", 'w') as file:
+            fields_rectangle = ['id', 'width', 'height', 'x', 'y']
+            fields_square = ['id', 'size', 'x', 'y']
+            dic = {'Rectangle': fields_rectangle, 'Square': fields_square}
+            if cls.__name__ in dic:
+                csv_writer = csv.DictWriter(file, fieldnames=dic[cls.__name__])
+                if list_objs is None or len(list_objs) == 0:
+                    csv_writer.writeheader()
+                    csv_writer.writerow(OrderedDict({}))
+                else:
+                    csv_writer.writeheader()
+                    for i in list_objs:
+                        csv_writer.writerow(OrderedDict(i.to_dictionary()))
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Deserializes CSV data.
+        """
+        if not os.path.isfile(f"{cls.__name__}.csv"):
+            return OrderedDict({})
+        with open(f"{cls.__name__}.csv", 'r') as file:
+            csv_reader = csv.DictReader(file)
+            lis = []
+            for line in csv_reader:
+                for k, v in line.items():
+                    line[k] = int(v)
+                lis.append(cls.create(**line))
+            return lis
