@@ -4,9 +4,9 @@
 Has the class Rectangle.
 """
 import sys
+path = "/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models"
+sys.path.append(path)
 from base import Base
-sys.path.append("/home/carolyne/alx-higher_level_programming\
-        /0x0C-python-almost_a_circle/models")
 
 
 class Rectangle(Base):
