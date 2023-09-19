@@ -7,8 +7,10 @@ Class Rectangle tests.
 import unittest
 from unittest.mock import patch
 import os
+import json
 from io import StringIO
-Rectangle = __import__("models.rectangle").rectangle.Rectangle
+from models.rectangle import Rectangle
+# Rectangle = __import__("models.rectangle").rectangle.Rectangle
 
 
 class TestRectangle(unittest.TestCase):
@@ -231,3 +233,46 @@ class TestRectangle(unittest.TestCase):
         os.remove('Rectangle.json')
         list_rectangles_output = Rectangle.load_from_file()
         self.assertEqual(list_rectangles_output, [])
+
+    def test_save_to_file(self):
+        """Tests the class method save_to_file."""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        lis = [{"id": r1.id, "width": 10, "height": 7, "x": 2, "y": 8},
+               {"id": r2.id, "width": 2, "height": 4, "x": 0, "y": 0}]
+        check = json.dumps(lis)
+        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", "r") as file:
+            contents = file.read()
+            self.assertEqual(check, contents)
+
+        Rectangle.save_to_file(None)
+        with open('Rectangle.json', 'r') as file:
+            self.assertEqual(file.read(), '[]')
+
+        Rectangle.save_to_file([])
+        with open('Rectangle.json', 'r') as file:
+            self.assertEqual(file.read(), '[]')
+
+        self.assertRaises(AttributeError, Rectangle.save_to_file, "Hello")
+        with open('Rectangle.json', 'r') as file:
+            self.assertEqual(file.read(), '')
+
+    def test_to_json_string(self):
+        """Tests the static method to_json_string."""
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        dictionary = r1.to_dictionary()
+        json_dictionary = Rectangle.to_json_string([dictionary])
+        self.assertIsInstance(dictionary, dict)
+        self.assertIsInstance(json_dictionary, str)
+        self.assertEqual(Rectangle.to_json_string(None), "[]")
+        self.assertEqual(Rectangle.to_json_string([]), "[]")
+        self.assertRaises(TypeError, Rectangle.to_json_string, True)
+        self.assertEqual(Rectangle.to_json_string([1, 4, 5]), "[1, 4, 5]")
+        self.assertEqual(Rectangle.to_json_string({'Hello': 43}),
+                         '{"Hello": 43}')
+        self.assertEqual(Rectangle.to_json_string((2, 4, 'hello')),
+                         '[2, 4, "hello"]')
+        self.assertRaises(TypeError, Rectangle.to_json_string, 23)
+        self.assertEqual(Rectangle.to_json_string('Hey'), '"Hey"')
+        self.assertRaises(TypeError, Rectangle.to_json_string, {23, 34})

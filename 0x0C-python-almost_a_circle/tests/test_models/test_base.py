@@ -4,8 +4,10 @@
 Has the test for the base module.
 """
 import unittest
-Base = __import__("models.base").base.Base
-Rectangle = __import__("models.rectangle").rectangle.Rectangle
+from models.base import Base
+from models.rectangle import Rectangle
+# Base = __import__("models.base").base.Base
+# Rectangle = __import__("models.rectangle").rectangle.Rectangle
 
 
 class TestBase(unittest.TestCase):

@@ -3,7 +3,8 @@
 """
 Has the Square class.
 """
-Rectangle = __import__("models.rectangle").rectangle.Rectangle
+from models.rectangle import Rectangle
+# Rectangle = __import__("models.rectangle").rectangle.Rectangle
 
 
 class Square(Rectangle):

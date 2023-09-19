@@ -4,10 +4,13 @@
 Class Square tests.
 """
 
+import os
 import unittest
 from unittest.mock import patch
 from io import StringIO
-Square = __import__("models.square").square.Square
+from models.square import Square
+import json
+# Square = __import__("models.square").square.Square
 
 
 class TestSquare(unittest.TestCase):
@@ -155,3 +158,97 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(self.s2.to_dictionary(), dict2)
         self.assertEqual(s1.to_dictionary(), s2.to_dictionary())
         self.assertNotEqual(s1, s2)
+
+    def test_from_json_string(self):
+        """Tests the static method from_json_string."""
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+        self.assertIsInstance(list_input, list)
+        self.assertIsInstance(json_list_input, str)
+        self.assertIsInstance(list_output, list)
+        self.assertEqual(list_input, list_output)
+
+    def test_create(self):
+        """Tests the class method create."""
+        s1 = Square(3, 5, 1)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        str1 = f"[Square] ({s1.id}) 5/1 - 3\n"
+        self.assertIsNot(s1, s2)
+        self.assertNotEqual(s1, s2)
+        with patch('sys.stdout', new=StringIO()) as mock_print:
+            print(s1)
+            self.assertEqual(mock_print.getvalue(), str1)
+        with patch('sys.stdout', new=StringIO()) as mock_print:
+            print(s2)
+            self.assertEqual(mock_print.getvalue(), str1)
+
+    def test_load_from_file(self):
+        """Tests the class method load_from_file."""
+        s1 = Square(10, 7, 2)
+        s2 = Square(2)
+        list_squares_input = [s1, s2]
+        str1 = f"[Square] ({s1.id}) 7/2 - 10\n"
+        str2 = f"[Square] ({s2.id}) 0/0 - 2\n"
+
+        Square.save_to_file(list_squares_input)
+
+        list_squares_output = Square.load_from_file()
+        self.assertNotEqual(s1, list_squares_output[0])
+        self.assertNotEqual(s2, list_squares_output[1])
+        with patch('sys.stdout', new=StringIO()) as mock_print:
+            print(list_squares_output[0])
+            self.assertEqual(mock_print.getvalue(), str1)
+        with patch('sys.stdout', new=StringIO()) as mock_print:
+            print(list_squares_output[1])
+            self.assertEqual(mock_print.getvalue(), str2)
+
+        os.remove('Square.json')
+        list_squares_output = Square.load_from_file()
+        self.assertEqual(list_squares_output, [])
+
+    def test_save_to_file(self):
+        """Tests the class method save_to_file."""
+        s1 = Square(10, 2, 8)
+        s2 = Square(2)
+        lis = [{"id": s1.id, "size": 10, "x": 2, "y": 8},
+               {"id": s2.id, "size": 2, "x": 0, "y": 0}]
+        check = json.dumps(lis)
+        Square.save_to_file([s1, s2])
+        with open("Square.json", "r") as file:
+            contents = file.read()
+            self.assertEqual(check, contents)
+
+        Square.save_to_file(None)
+        with open('Square.json', 'r') as file:
+            self.assertEqual(file.read(), '[]')
+
+        Square.save_to_file([])
+        with open('Square.json', 'r') as file:
+            self.assertEqual(file.read(), '[]')
+
+        self.assertRaises(AttributeError, Square.save_to_file, "Hello")
+        with open('Square.json', 'r') as file:
+            self.assertEqual(file.read(), '')
+
+    def test_to_json_string(self):
+        """Tests the static method to_json_string."""
+        s1 = Square(10, 7, 2, 8)
+        dictionary = s1.to_dictionary()
+        json_dictionary = Square.to_json_string([dictionary])
+        self.assertIsInstance(dictionary, dict)
+        self.assertIsInstance(json_dictionary, str)
+        self.assertEqual(Square.to_json_string(None), "[]")
+        self.assertEqual(Square.to_json_string([]), "[]")
+        self.assertRaises(TypeError, Square.to_json_string, True)
+        self.assertEqual(Square.to_json_string([1, 4, 5]), "[1, 4, 5]")
+        self.assertEqual(Square.to_json_string({'Hello': 43}), '{"Hello": 43}')
+        self.assertEqual(Square.to_json_string((2, 4, 'hello')),
+                         '[2, 4, "hello"]')
+        self.assertRaises(TypeError, Square.to_json_string, 23)
+        self.assertEqual(Square.to_json_string('Hey'), '"Hey"')
+        self.assertRaises(TypeError, Square.to_json_string, {23, 34})

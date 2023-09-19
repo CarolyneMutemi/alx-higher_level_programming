@@ -3,7 +3,8 @@
 """
 Has the class Rectangle.
 """
-Base = __import__("models.base").base.Base
+from models.base import Base
+# Base = __import__("models.base").base.Base
 
 
 class Rectangle(Base):
