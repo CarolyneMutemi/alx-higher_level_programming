@@ -4,12 +4,8 @@
 Has the test for the base module.
 """
 import unittest
-import sys
-import json
-import os
-sys.path.append("/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models")
-from base import Base
-from rectangle import Rectangle
+Base = __import__("models.base").base.Base
+Rectangle = __import__("models.rectangle").rectangle.Rectangle
 
 
 class TestBase(unittest.TestCase):
@@ -59,9 +55,11 @@ class TestBase(unittest.TestCase):
         r2 = Rectangle(2, 4)
         Rectangle.save_to_file([r1, r2])
         with open("Rectangle.json", "r") as file:
-            check = '[{"id": 5, "width": 10, "height": 7, "x": 2, "y": 8}, {"id": 6, "width": 2, "height": 4, "x": 0, "y": 0}]'
+            str1 = '[{"id": 5, "width": 10, "height": 7, "x": 2, "y": 8},'
+            str2 = ' {"id": 6, "width": 2, "height": 4, "x": 0, "y": 0}]'
+            check = str1 + str2
             contents = file.read()
-            self.assertEqual(contents, check)
+            self.assertEqual(check, contents)
 
         Rectangle.save_to_file(None)
         with open('Rectangle.json', 'r') as file:

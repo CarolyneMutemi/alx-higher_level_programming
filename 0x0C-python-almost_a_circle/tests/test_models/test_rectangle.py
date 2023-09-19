@@ -6,12 +6,9 @@ Class Rectangle tests.
 
 import unittest
 from unittest.mock import patch
-import sys
 import os
 from io import StringIO
-
-sys.path.append("/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models")
-from rectangle import Rectangle
+Rectangle = __import__("models.rectangle").rectangle.Rectangle
 
 
 class TestRectangle(unittest.TestCase):
@@ -87,7 +84,6 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.r3.y = {"y": 34}
 
-
     def test_area(self):
         """Tests for the area method."""
         self.assertEqual(self.r1.area(), 20)
@@ -100,7 +96,8 @@ class TestRectangle(unittest.TestCase):
         str1 = "[Rectangle] (12) 2/1 - 4/6\n"
         str2 = "[Rectangle] (0) 1/0 - 5/5\n"
         str3 = "[Rectangle] ({}) {}/{} - {}/{}\n"\
-            .format(self.r3.id, self.r3.x, self.r3.y, self.r3.width, self.r3.height)
+            .format(self.r3.id, self.r3.x, self.r3.y,
+                    self.r3.width, self.r3.height)
         with patch('sys.stdout', new=StringIO()) as mock_str:
             print(r1)
             self.assertEqual(mock_str.getvalue(), str1)
@@ -131,9 +128,10 @@ class TestRectangle(unittest.TestCase):
 
     def test_update(self):
         """Tests for the update method."""
-        #Tests using *args.
+        # Tests using *args.
         args = ('Hello', 1, 2, 3, 4, 3, 4, 1, 5)
-        kwargs = {"id": {'id': "Me too"}, "width": 9, "height": 12, "x": 3, "y": 2, "Greetings": "Hello"}
+        kwargs = {"id": {'id': "Me too"}, "width": 9,
+                  "height": 12, "x": 3, "y": 2, "Greetings": "Hello"}
         self.r1.update(89, **kwargs)
         self.assertEqual(self.r1.id, 89)
         self.assertEqual(self.r1.width, 10)
@@ -154,7 +152,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r2.height, 2)
         self.assertEqual(self.r2.x, 3)
         self.assertEqual(self.r2.y, 4)
-        #Tests using **kwargs
+        # Tests using **kwargs
         self.r3.update(**kwargs)
         self.assertEqual(self.r3.id, {'id': "Me too"})
         self.assertEqual(self.r3.width, 9)
@@ -172,7 +170,7 @@ class TestRectangle(unittest.TestCase):
         r2 = Rectangle(1, 1)
         r1_dictionary = r1.to_dictionary()
         r2.update(**r1_dictionary)
-        dict1 = {'id': self.r1.id, 'width': 10, 'height': 2, 'x': 0, 'y':0}
+        dict1 = {'id': self.r1.id, 'width': 10, 'height': 2, 'x': 0, 'y': 0}
         dict3 = {'id': 12, 'width': 10, 'height': 2, 'x': 1, 'y': 2}
         self.r2.update(1, 2, 3, 4, 3)
         dict2 = {'id': 1, 'width': 2, 'height': 3, 'x': 4, 'y': 3}
@@ -185,8 +183,8 @@ class TestRectangle(unittest.TestCase):
     def test_from_json_string(self):
         """Tests the static method from_json_string."""
         list_input = [
-        {'id': 89, 'width': 10, 'height': 4},
-        {'id': 7, 'width': 1, 'height': 7}
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
         ]
         json_list_input = Rectangle.to_json_string(list_input)
         list_output = Rectangle.from_json_string(json_list_input)

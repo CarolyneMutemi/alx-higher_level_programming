@@ -6,11 +6,8 @@ Class Square tests.
 
 import unittest
 from unittest.mock import patch
-import sys
 from io import StringIO
-
-sys.path.append("/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models")
-from square import Square
+Square = __import__("models.square").square.Square
 
 
 class TestSquare(unittest.TestCase):
@@ -69,7 +66,6 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.s3.y = {"y": 34}
 
-
     def test_area(self):
         """Tests for the area method."""
         self.assertEqual(self.s1.area(), 100)
@@ -113,9 +109,10 @@ class TestSquare(unittest.TestCase):
 
     def test_update(self):
         """Tests for the update method."""
-        #Tests using *args.
+        # Tests using *args.
         args = ('Hello', 1, 2, 3, 4, 3, 4, 1, 5)
-        kwargs = {"id": {'id': "Me too"}, "size": 9, "x": 3, "y": 2, "Greetings": "Hello"}
+        kwargs = {"id": {'id': "Me too"}, "size": 9,
+                  "x": 3, "y": 2, "Greetings": "Hello"}
         self.s1.update(89, **kwargs)
         self.assertEqual(self.s1.id, 89)
         self.assertEqual(self.s1.size, 10)
@@ -132,7 +129,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(self.s2.size, 1)
         self.assertEqual(self.s2.x, 2)
         self.assertEqual(self.s2.y, 3)
-        #Tests using **kwargs
+        # Tests using **kwargs
         self.s3.update(**kwargs)
         self.assertEqual(self.s3.id, {'id': "Me too"})
         self.assertEqual(self.s3.size, 9)
@@ -149,7 +146,7 @@ class TestSquare(unittest.TestCase):
         s2 = Square(1)
         s1_dictionary = s1.to_dictionary()
         s2.update(**s1_dictionary)
-        dict1 = {'id': self.s1.id, 'size': 10, 'x': 0, 'y':0}
+        dict1 = {'id': self.s1.id, 'size': 10, 'x': 0, 'y': 0}
         dict3 = {'id': 2, 'size': 10, 'x': 2, 'y': 1}
         self.s2.update(1, 2, 3, 4)
         dict2 = {'id': 1, 'size': 2, 'x': 3, 'y': 4}
