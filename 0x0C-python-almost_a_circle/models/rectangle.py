@@ -15,6 +15,15 @@ class Rectangle(Base):
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
+        """
+        The constructor for the Rectangle class.
+        Args:
+            width - width of the rectangle.
+            height - height of the rectangle.
+            x - the x offset.
+            y - the y offset.
+            id - id of the object.
+        """
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
         if width <= 0:
@@ -125,6 +134,9 @@ class Rectangle(Base):
             print("#" * self.__width)
 
     def __str__(self):
+        """
+        Returns a string when the object is printed..
+        """
         return "[Rectangle] ({}) {}/{} - {}/{}"\
             .format(self.id, self.__x, self.__y, self.__width, self.__height)
 
