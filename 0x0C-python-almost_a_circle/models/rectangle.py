@@ -39,12 +39,16 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """To retrieve width attribute."""
+        """
+        To retrieve width attribute.
+        """
         return self.__width
 
     @width.setter
     def width(self, width):
-        """To set width attribute."""
+        """
+        To set width attribute.
+        """
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
         if width <= 0:
@@ -53,12 +57,16 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """To retrieve height attribute."""
+        """
+        To retrieve height attribute.
+        """
         return self.__height
 
     @height.setter
     def height(self, height):
-        """To set height attribute."""
+        """
+        To set height attribute.
+        """
         if not isinstance(height, int):
             raise TypeError("height must be an integer")
         if height <= 0:
@@ -67,12 +75,16 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """To retrieve x attribute."""
+        """
+        To retrieve x attribute.
+        """
         return self.__x
 
     @x.setter
     def x(self, x):
-        """To set x attribute."""
+        """
+        To set x attribute.
+        """
         if not isinstance(x, int):
             raise TypeError("x must be an integer")
         if x < 0:
@@ -81,12 +93,16 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """To retrieve y attribute."""
+        """
+        To retrieve y attribute.
+        """
         return self.__y
 
     @y.setter
     def y(self, y):
-        """To set y attribute."""
+        """
+        To set y attribute.
+        """
         if not isinstance(y, int):
             raise TypeError("y must be an integer")
         if y < 0:
@@ -94,18 +110,24 @@ class Rectangle(Base):
         self.__y = y
 
     def area(self):
-        """Returns the area of the Rectangle instance."""
+        """
+        Returns the area of the Rectangle instance.
+        """
         return self.__width * self.__height
 
     def display(self):
-        """Prints in stdout the Rectangle instance with the character #"""
+        """
+        Prints in stdout the Rectangle instance with the character #.
+        """
         print("\n" * self.__y, end="")
         for i in range(self.__height):
             print(" " * self.__x, end="")
             print("#" * self.__width)
 
     def __str__(self):
-        """To set the str attribute."""
+        """
+        To set the str attribute.
+        """
         return "[Rectangle] ({}) {}/{} - {}/{}"\
             .format(self.id, self.__x, self.__y, self.__width, self.__height)
 
