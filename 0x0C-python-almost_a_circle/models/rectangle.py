@@ -3,10 +3,7 @@
 """
 Has the class Rectangle.
 """
-import sys
-path = "/home/carolyne/alx-higher_level_programming/0x0C-python-almost_a_circle/models"
-sys.path.append(path)
-from base import Base
+Base = __import__("models.base").base.Base
 
 
 class Rectangle(Base):
