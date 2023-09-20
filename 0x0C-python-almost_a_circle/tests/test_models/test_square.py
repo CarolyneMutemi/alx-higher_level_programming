@@ -225,11 +225,11 @@ class TestSquare(unittest.TestCase):
 
         Square.save_to_file(None)
         with open('Square.json', 'r') as file:
-            self.assertEqual(file.read(), '[]')
+            self.assertEqual(file.read(), "[]")
 
         Square.save_to_file([])
         with open('Square.json', 'r') as file:
-            self.assertEqual(file.read(), '[]')
+            self.assertEqual(file.read(), "[]")
 
         self.assertRaises(AttributeError, Square.save_to_file, "Hello")
         with open('Square.json', 'r') as file:

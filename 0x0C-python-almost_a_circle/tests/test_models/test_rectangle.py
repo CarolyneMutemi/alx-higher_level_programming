@@ -248,11 +248,11 @@ class TestRectangle(unittest.TestCase):
 
         Rectangle.save_to_file(None)
         with open('Rectangle.json', 'r') as file:
-            self.assertEqual(file.read(), '[]')
+            self.assertEqual(file.read(), "[]")
 
         Rectangle.save_to_file([])
         with open('Rectangle.json', 'r') as file:
-            self.assertEqual(file.read(), '[]')
+            self.assertEqual(file.read(), "[]")
 
         self.assertRaises(AttributeError, Rectangle.save_to_file, "Hello")
         with open('Rectangle.json', 'r') as file:
