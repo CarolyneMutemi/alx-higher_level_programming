@@ -5,14 +5,17 @@
  */
 
 const input = process.argv;
-let big = input[0];
+let big = parseInt(input[2]);
 let second = 0;
 let i = 2;
 
 while (i < input.length && input.length !== 3) {
-  if (input[i] > big) {
+  if (parseInt(input[i]) > big) {
     second = big;
-    big = input[i];
+    big = parseInt(input[i]);
+  }
+  if (parseInt(input[i]) < big && parseInt(input[i]) > second) {
+    second = parseInt(input[i]);
   }
   i++;
 }
