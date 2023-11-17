@@ -3,7 +3,6 @@
 """
 Takes in an argument and displays all values in the states table
 of hbtn_0e_0_usa where name matches the argument.
-It's safe from MySQL injections.
 """
 
 import sys
@@ -19,8 +18,8 @@ if __name__ == "__main__":
                          user=username, passwd=password, db=database)
     cur = db.cursor()
 
-    cur.execute("SELECT id, name FROM states WHERE name='{}' \
-                ORDER BY states.id ASC".format(name))
+    cur.execute("SELECT id, name FROM states WHERE name=%s \
+                ORDER BY states.id ASC", (name,))
     rows = cur.fetchall()
 
     for row in rows:
