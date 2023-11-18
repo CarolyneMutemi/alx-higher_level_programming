@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+
 """
-Prints the first State object from the database hbtn_0e_6_usa.
+Lists all State objects that contain
+the letter a from the database hbtn_0e_6_usa.
+Usage:-
+    ./9-model_state_filter_a.py <mysql username>,
+    <mysql password> <database name>
 """
 
 import sys
@@ -15,8 +20,10 @@ if __name__ == "__main__":
 
     engine = create_engine("mysql+mysqldb://{}:{}@localhost:3306/{}"
                            .format(username, password, database))
+
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).order_by(State.id).first()
-    print(f"{state.id}: {state.name}")
+    for instance in session.query(State).order_by(State.id)\
+            .filter(State.name.like('%a%')):
+        print(f'{instance.id}: {instance.name}')
