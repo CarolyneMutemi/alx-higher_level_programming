@@ -29,7 +29,7 @@ if __name__ == "__main__":
         if index == len(rows) - 1:
             print(row[1])
         else:
-            print('{}, '.format(row[1]), end='')
+            print(f'{row[1]}, ', end='')
 
     cur.close()
     db.close()
