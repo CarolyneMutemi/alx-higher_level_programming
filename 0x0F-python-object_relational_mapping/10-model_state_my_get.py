@@ -23,9 +23,8 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    query = session.query(State).filter_by(name=state)
-    if not query:
+    query = session.query(State).filter_by(name=state).first()
+    if query is None:
         print("Not found")
     else:
-        for result in query:
-            print(result.id)
+        print(query.id)
