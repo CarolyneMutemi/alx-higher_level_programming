@@ -25,11 +25,14 @@ if __name__ == "__main__":
                 ORDER BY cities.id ASC;", (state,))
     rows = cur.fetchall()
 
-    for index, row in enumerate(rows):
-        if index == len(rows) - 1:
-            print(row[1])
-        else:
-            print(f'{row[1]}, ', end='')
+    if not rows:
+        print()
+    else:
+        for index, row in enumerate(rows):
+            if index == len(rows) - 1:
+                print(row[1])
+            else:
+                print(f'{row[1]}, ', end='')
 
     cur.close()
     db.close()
