@@ -15,6 +15,7 @@ from sqlalchemy.orm import sessionmaker
 from relationship_state import State
 from relationship_city import City
 
+
 if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
@@ -29,4 +30,3 @@ if __name__ == "__main__":
         print(f"{state.id}: {state.name}")
         for city in state.cities:
             print(f"\t{city.id}: {city.name}")
-    
