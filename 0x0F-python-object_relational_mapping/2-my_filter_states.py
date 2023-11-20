@@ -19,7 +19,7 @@ if __name__ == "__main__":
                          user=username, passwd=password, db=database)
     cur = db.cursor()
 
-    cur.execute("SELECT id, name FROM states WHERE name = '{}' \
+    cur.execute("SELECT id, name FROM states WHERE BINARY name = '{}' \
                 ORDER BY states.id ASC".format(name))
     rows = cur.fetchall()
 
