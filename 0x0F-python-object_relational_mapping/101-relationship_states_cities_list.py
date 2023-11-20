@@ -12,9 +12,8 @@ Usage:-
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import selectinload
 from relationship_state import State
-#from relationship_city import City
+from relationship_city import City
 
 if __name__ == "__main__":
     username = sys.argv[1]
@@ -26,9 +25,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    parent = session.query(State)
-
-    #for state in session.query(State).options(selectinload(State.cities)):
-    #    print(f"{state.id}: {state.name}")
-    #    for city in state.cities:
-    #        print(f"\t{city.id}: {city.name}")
+    for state in session.query(State).order_by(State.id):
+        print(f"{state.id}: {state.name}")
+        for city in state.cities:
+            print(f"\t{city.id}: {city.name}")
