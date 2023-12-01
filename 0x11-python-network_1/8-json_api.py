@@ -21,5 +21,5 @@ if __name__ == '__main__':
             print('No result')
         else:
             print(f"[{data_dict.get('id')}] {data_dict.get('name')}")
-    except:
+    except Exception:
         print('Not a valid json')
