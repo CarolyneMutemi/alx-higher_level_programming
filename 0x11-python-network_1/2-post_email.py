@@ -16,4 +16,4 @@ if __name__ == '__main__':
     params = parse.urlencode(params).encode('utf-8')
     url = request.Request(url, params)
     with request.urlopen(url) as data:
-        print(data.read())
+        print(data.read().decode('utf-8'))
