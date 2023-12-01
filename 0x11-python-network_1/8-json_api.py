@@ -15,10 +15,11 @@ if __name__ == '__main__':
 
     post = {'q': q}
     data = requests.post('http://0.0.0.0:5000/search_user', data=post)
-    data_dict = data.json()
-    if data_dict is None:
+    try:
+        data_dict = data.json()
+        if len(data_dict) == 0:
+            print('No result')
+        else:
+            print(f"[{data_dict.get('id')}] {data_dict.get('name')}")
+    except:
         print('Not a valid json')
-    elif len(data_dict) == 0:
-        print('No result')
-    else:
-        print(f"[{data_dict.get('id')}] {data_dict.get('name')}")
