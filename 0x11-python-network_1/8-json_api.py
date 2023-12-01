@@ -21,4 +21,4 @@ if __name__ == '__main__':
     elif len(data_dict) == 0:
         print('No result')
     else:
-        print(f"[{data_dict['id']}] {data_dict['name']}")
+        print(f"[{data_dict.get('id')}] {data_dict.get('name')}")
