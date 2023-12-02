@@ -16,7 +16,6 @@ if __name__ == '__main__':
     lis = data.json()
     date_list = []
     today = datetime.now()
-    
 
     count = 1
     for dic in lis:
@@ -25,4 +24,3 @@ if __name__ == '__main__':
         if count == 10:
             break
         count += 1
-
