@@ -13,9 +13,10 @@ if __name__ == '__main__':
 
     url = f'https://api.github.com/repos/{owner}/{repo}/commits'
     data = requests.get(url)
-    lis = data.json()
-    date_list = []
-    today = datetime.now()
+    lis = sorted(data.json(),
+                 key=lambda x: datetime.strptime(x['commit']['author']['date'],
+                                                 '%Y-%m-%dT%H:%M:%SZ'),
+                 reverse=True)
 
     count = 1
     for dic in lis:
