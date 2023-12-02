@@ -22,4 +22,4 @@ if __name__ == '__main__':
         else:
             print(f"[{data_dict.get('id')}] {data_dict.get('name')}")
     except Exception:
-        print('Not a valid json')
+        print('Not a valid JSON')
