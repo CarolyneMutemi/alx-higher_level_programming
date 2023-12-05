@@ -3,6 +3,7 @@
 Has the find_peak function.
 """
 
+
 def find_peak(lis):
     """
     Finds a peak in a list of unsorted integers.
@@ -14,15 +15,15 @@ def find_peak(lis):
     if len(lis) == 0:
         return None
     mid = len(lis) // 2
-    l = mid - 1
-    r = mid + 1
-    while l >= 0 and r <= len(lis) - 1:
-        if lis[mid] > lis[l] and lis[mid] > lis[r]:
+    left = mid - 1
+    right = mid + 1
+    while left >= 0 and right <= len(lis) - 1:
+        if lis[mid] > lis[left] and lis[mid] > lis[right]:
             return lis[mid]
-        if lis[l] >= lis[mid] and lis[mid] > lis[r]:
-            mid = l
+        if lis[left] >= lis[mid] and lis[mid] > lis[right]:
+            mid = left
         else:
-            mid = r
-        l = mid - 1
-        r = mid + 1
+            mid = right
+        left = mid - 1
+        right = mid + 1
     return lis[mid]
