@@ -17,7 +17,8 @@ def find_peak(lis):
     mid = len(lis) // 2
     left = mid - 1
     right = mid + 1
-    # check for an instance where there is no peak in the right side and switch to left
+    # check for an instance where there is no peak
+    # in the right side and switch to left
     check = 0
     while left >= 0 and right <= len(lis) - 1:
         if lis[mid] > lis[left] and lis[mid] > lis[right]:
